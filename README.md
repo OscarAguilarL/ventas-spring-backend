@@ -1,4 +1,4 @@
-# Título del proyecto
+# Proyecto de ventas con Spring
 
 Backend de una aplicación de ventas con Spring Boot
 
