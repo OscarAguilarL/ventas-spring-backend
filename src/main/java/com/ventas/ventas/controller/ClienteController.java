@@ -38,4 +38,14 @@ public class ClienteController {
                 .map(c -> ResponseEntity.ok(clienteService.update(cliente)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Cliente> delete(@PathVariable("id") Integer id) {
+        return clienteService.findById(id)
+                .map(cliente -> {
+                    clienteService.delete(id);
+                    return ResponseEntity.ok(cliente);
+                })
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 }
