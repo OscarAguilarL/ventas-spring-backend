@@ -31,4 +31,11 @@ public class ClienteController {
     public ResponseEntity<Cliente> create(@RequestBody Cliente cliente) {
         return new ResponseEntity<>(clienteService.create(cliente), HttpStatus.CREATED);
     }
+
+    @PutMapping
+    public ResponseEntity<Cliente> update(@RequestBody Cliente cliente) {
+        return clienteService.findById(cliente.getId())
+                .map(c -> ResponseEntity.ok(clienteService.update(cliente)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 }
